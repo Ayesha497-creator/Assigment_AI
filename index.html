@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find City Path</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #d3a7bf;
+      margin: 0;
+      padding: 0;
+      color: #e4b0b0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding: 40px;
+      max-width: 850px;
+      margin: auto;
+      background: #d9e1eb;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    h1, h3 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    label {
+      font-weight: 600;
+      color: #34495e;
+    }
+    input[type="text"], input[type="number"] {
+      padding: 10px;
+      border: 1px solid #ccd1d9;
+      border-radius: 8px;
+      width: 200px;
+      font-size: 14px;
+      background-color: #f9fafc;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="number"]:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    button {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      transform: scale(1.05);
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+    #output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ecf0f1;
+      border: 1px solid #bdc3c7;
+      border-radius: 8px;
+      color: #2c3e50;
+      font-size: 14px;
+    }
+    #graph {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      border: 2px solid #bdc3c7;
+      border-radius: 12px;
+      background-color: #fafafa;
+    }
+    .node {
+      position: absolute;
+      padding: 10px 15px;
+      background-color: #3498db;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .node:hover {
+      background-color: #2980b9;
+      transform: scale(1.1);
+    }
+    .node:active {
+      transform: scale(0.9);
+    }
+    .edge {
+      position: absolute;
+      stroke: #3498db;
+      stroke-width: 2;
+      transition: stroke 0.3s ease;
+    }
+    .edge:hover {
+      stroke: #e74c3c;
+    }
+    .edge-text {
+      position: absolute;
+      font-size: 12px;
+      color: #7f8c8d;
+      font-weight: bold;
+      transform: translate(-50%, -50%);
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .btn-group button {
+      padding: 12px 20px;
+      background-color: #9b59b6;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-group button:hover {
+      background-color: #8e44ad;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Find City Path</h1>
+    <h3>Graph Editor</h3>
+    <div class="form-group">
+      <label for="from-node">From Node:</label>
+      <input type="text" id="from-node" placeholder="Enter node (e.g., A)" />
+    </div>
+    <div class="form-group">
+      <label for="to-node">To Node:</label>
+      <input type="text" id="to-node" placeholder="Enter node (e.g., B)" />
+    </div>
+    <div class="form-group">
+      <label for="cost">Cost:</label>
+      <input type="number" id="cost" placeholder="Enter cost (e.g., 5)" />
+    </div>
+    <button onclick="addEdge()">Add Edge</button>
+    <div id="graph"></div>
+    <h3>Path Finding Algorithms</h3>
+    <div class="btn-group">
+      <button onclick="runAlgorithm('bfs')">Start BFS</button>
+      <button onclick="runAlgorithm('dfs')">Start DFS</button>
+      <button onclick="runAlgorithm('ucs')">Start UCS</button>
+    </div>
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+)
